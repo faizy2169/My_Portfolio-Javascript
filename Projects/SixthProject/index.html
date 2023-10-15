@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5877e762d2.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            var elementClick = false;
+            var arcadeValMont="";
+            var advanceValMont="";
+            var proValMont="";
+            var arcadeValYear="";
+            var advanceValYear="";
+            var proValYear="";
+            var num1 = null;
+            var num2 = null;
+            var num3 = null;
+            var result = 0;
+            var planAmount = 0;
+            $("#secondPage").css({'display':'none'})
+            $("#nameField").blur(function(){
+                if($(this).val() == ''){
+                    $("#nameWarning").text('This field is required.')
+                }
+                else{
+                    $("#nameWarning").text('')
+                }
+            })
+            $("#emailField").blur(function(){
+                if($(this).val() == ''){
+                    $("#emailWarning").text('This field is required.')
+                }
+                else{
+                    $("#emailWarning").text('')
+                }
+            })
+            $("#phoneField").blur(function(){
+                if($(this).val() == ''){
+                    $("#phoneWarning").text('This field is required.')
+                }
+                else{
+                    $("#phoneWarning").text('')
+                }
+            })
+            $("#switchPlan").click(function(){
+                $("#toggle").toggleClass('switch-toggle');
+                $("#month").toggleClass('month-undo');
+                $("#yearly").toggleClass('year-undo');
+                $(".card-amount").toggleClass('card-amount-switch');
+                $(".year-amount").toggleClass('year-amount-switch');
+                $(".year-plan").toggleClass('year-plan-switch');
+                $("#arcade").css({'background':'','borderColor':''});
+                $("#advance").css({'background':'','borderColor':''});
+                $("#pro").css({'background':'','borderColor':''});
+                $("#gotothird").attr({'disabled':true});
+            })
+            $("#arcade").click(function(){
+                $("#plan-warning").css({'display':'none'})
+                elementClick = true;
+                $("#pro").css({'background':'','borderColor':''});
+                $("#advance").css({'background':'','borderColor':''});
+                $("#arcade").css({'background':'hsl(206deg 33% 94%)','borderColor':'hsl(243, 100%, 62%)'});
+                $("#gotothird").attr({'disabled':false});
+                if($("#toggle").hasClass('switch-toggle')){
+                    arcadeValYear = "$90/yr"
+                    planAmount = 90;
+                    $("#showPlanAmount").text(arcadeValYear);
+                    $("#displayPlan").text("Arcade (Yearly)");
+                    $("#displayTotal").text("Total (per year)");
+                    $("#add-onsAmount1").text("+$10/yr");
+                    $("#add-onsAmount2").text("+$20/yr");
+                    $("#add-onsAmount3").text("+$20/yr");
+                }
+                else{
+                    arcadeValMont = "$9/mo";
+                    planAmount = 9;
+                    $("#showPlanAmount").text(arcadeValMont);
+                    $("#displayPlan").text("Arcade (Monthly)");
+                    $("#displayTotal").text("Total (per month)");
+                    $("#add-onsAmount1").text("+$1/mo");
+                    $("#add-onsAmount2").text("+$2/mo");
+                    $("#add-onsAmount3").text("+$2/mo");
+                }
+            })
+            $("#advance").click(function(){
+                elementClick = true;
+                var advanceVal = "$12/mo";
+                $("#plan-warning").css({'display':'none'})
+                $("#pro").css({'background':'','borderColor':''});
+                $("#arcade").css({'background':'','borderColor':''});
+                $("#advance").css({'background':'hsl(206deg 33% 94%)','borderColor':'hsl(243, 100%, 62%)'});
+                $("#gotothird").attr({'disabled':false});
+                if($("#toggle").hasClass('switch-toggle')){
+                    advanceValYear = "$120/yr"
+                    planAmount = 120;
+                    $("#showPlanAmount").text(advanceValYear);
+                    $("#displayPlan").text("Advance (Yearly)");
+                    $("#displayTotal").text("Total (per year)");
+                    $("#add-onsAmount1").text("+$10/yr");
+                    $("#add-onsAmount2").text("+$20/yr");
+                    $("#add-onsAmount3").text("+$20/yr");
+                }
+                else{
+                    advanceValMont = "$12/mo";
+                    planAmount = 12;
+                    $("#showPlanAmount").text(advanceValMont);
+                    $("#displayPlan").text("Advance (Monthly)");
+                    $("#displayTotal").text("Total (per month)");
+                    $("#add-onsAmount1").text("+$1/mo");
+                    $("#add-onsAmount2").text("+$2/mo");
+                    $("#add-onsAmount3").text("+$2/mo");
+                }
+            })
+            $("#pro").click(function(){
+                elementClick = true;
+                var proVal = "$15/mo";
+                $("#plan-warning").css({'display':'none'})
+                $("#arcade").css({'background':'','borderColor':''});
+                $("#advance").css({'background':'','borderColor':''});
+                $("#pro").css({'background':'hsl(206deg 33% 94%)','borderColor':'hsl(243, 100%, 62%)'});
+                $("#gotothird").attr({'disabled':false});
+                if($("#toggle").hasClass('switch-toggle')){
+                    proValYear = "$150/yr";
+                    planAmount = 150;
+                    $("#showPlanAmount").text(proValYear);
+                    $("#displayPlan").text("Pro (Yearly)");
+                    $("#displayTotal").text("Total (per year)");
+                    $("#add-onsAmount1").text("+$10/yr");
+                    $("#add-onsAmount2").text("+$20/yr");
+                    $("#add-onsAmount3").text("+$20/yr");
+                }
+                else{
+                    proValMont = "$15/mo";
+                    planAmount = 15;
+                    $("#showPlanAmount").text(proValMont);
+                    $("#displayPlan").text("Pro (Monthly)");
+                    $("#displayTotal").text("Total (per month)");
+                    $("#add-onsAmount1").text("+$1/mo");
+                    $("#add-onsAmount2").text("+$2/mo");
+                    $("#add-onsAmount3").text("+$2/mo");
+                }
+            })
+            $("#gotosecond").click(function(){
+                if($("#nameField").val()!='' && $("#emailField").val()!='' && $("#phoneField").val()!=''){
+                    $("#one").css({'backgroundColor':'transparent','color':'white'});
+                    $("#two").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'});
+                    $("#firstPage").css({'display':'none'});
+                    $("#secondPage").css({'display':'block'});
+                    $("#gotothird").attr({'disabled':'true'});
+                    $("#arcade").css({'background':'','borderColor':''});
+                    $("#advance").css({'background':'','borderColor':''});
+                    $("#pro").css({'background':'','borderColor':''});
+                }
+                else if($("#nameField").val()=='' && $("#emailField").val()=='' && $("#phoneField").val()==''){
+                    $("#nameWarning").text('This field is required.');
+                    $("#emailWarning").text('This field is required.');
+                    $("#phoneWarning").text('This field is required.');
+                    $("#nameField").css({'borderColor':'red'});
+                    $("#emailField").css({'borderColor':'red'});
+                    $("#phoneField").css({'borderColor':'red'});
+                }
+            })
+            $("#nameField").blur(function(){
+                if($(this).val() == ''){
+                    $(this).css({'borderColor':'red','box-shadow':'0'});
+                }
+                else{
+                    $(this).css({'borderColor':''});
+                }  
+            })
+            $("#emailField").blur(function(){
+                if($(this).val() == ''){
+                    $(this).css({'borderColor':'red'});
+                }
+                else{
+                    $(this).css({'borderColor':''});
+                }
+            })
+            $("#phoneField").blur(function(){
+                if($(this).val() == ''){
+                    $(this).css({'borderColor':'red'});
+                }
+                else{
+                    $(this).css({'borderColor':''});
+                }
+            })
+            $("#gotothird").click(function(){
+                if(elementClick == true){
+                    $("#two").css({'backgroundColor':'transparent','color':'white'})
+                    $("#three").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'})
+                    $("#secondPage").css({'display':'none'})
+                    $("#thirdPage").css({'display':'block'})
+                    }
+                else{
+                    $("#plan-warning").css({'display':'block'})
+                    }
+                })
+            $("#gotoforth").click(function(){
+                if($("#checkbox1").is(':checked') || $("#checkbox2").is(':checked') || $("#checkbox3").is(':checked') ){
+                    $("#three").css({'backgroundColor':'transparent','color':'white'})
+                    $("#four").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'})
+                    $("#thirdPage").css({'display':'none'})
+                    $("#forthPage").css({'display':'block'})
+                }
+                else{
+                    $("#checkbox-warning").css({'display':'block'})
+                }
+                    if($("#checkbox1").is(':checked')){
+                        var amount = $("#add-onsAmount1").text();
+                        $("#service1").text("Online service");
+                        $("#serviceAmount1").text(amount);
+                        if($("#toggle").hasClass('switch-toggle')){
+                            num1 = 10;
+                            result = num1 + planAmount;
+                        }
+                        else{
+                            num1 = 1;
+                            result = num1 + planAmount;
+                        }
+                    }
+                    else{
+                        num1 = 0;
+                        result = planAmount;
+                        $("#service1").text("");
+                        $("#serviceAmount1").text("");
+                    }
+                     if($("#checkbox2").is(':checked')){
+                        var amount = $("#add-onsAmount2").text();
+                        $("#service2").text("Larger storage");
+                        $("#serviceAmount2").text(amount);
+                        $("#serviceAmount2").css({'marginBottom':''});
+                    if($("#toggle").hasClass('switch-toggle')){
+                        num2 = 20;
+                        result = num1 + num2 + planAmount;
+                    }
+                    else{
+                        num2 = 2;
+                        result = num2 + num1 + planAmount;
+                    }
+                    }
+                else{
+                     num2 = 0;
+                    $("#service2").text("");
+                    $("#serviceAmount2").text("");
+                    $("#serviceAmount2").css({'marginBottom':'0'});
+                 }
+                 if($("#checkbox3").is(':checked')){
+                    var amount = $("#add-onsAmount3").text();
+                    $("#service3").text("Customizable profile");
+                    $("#serviceAmount3").text(amount);
+                    if($("#toggle").hasClass('switch-toggle')){
+                        num3 = 20;
+                        result = num2 + num1 + num3 + planAmount;
+                    }
+                    else{
+                        num3 = 2;
+                        result = num1 + num2 + num3 + planAmount;
+                    }
+                }
+                else{
+                    $("#service3").text("");
+                    $("#serviceAmount3").text("");
+                }
+                if($("#toggle").hasClass('switch-toggle')){
+                    $("#displayGrandAmount").text('+$'+result+'/yr');
+                }
+                else{
+                    $("#displayGrandAmount").text('+$'+result+'/mo');
+                }
+                })
+                $("#checkbox1").click(function(){
+                    $("#checkbox-warning").css({'display':'none'}); 
+                })
+                $("#checkbox2").click(function(){
+                    $("#checkbox-warning").css({'display':'none'}); 
+                })
+                $("#checkbox3").click(function(){
+                    $("#checkbox-warning").css({'display':'none'}); 
+                })
+            $("#goback").click(function(){
+                $("#two").css({'backgroundColor':'transparent','color':'white'})
+                $("#one").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'})
+                $("#secondPage").css({'display':'none'})
+                $("#firstPage").css({'display':'block'})
+            })
+            $("#goback3").click(function(){
+                $("#three").css({'backgroundColor':'transparent','color':'white'})
+                $("#two").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'})
+                $("#thirdPage").css({'display':'none'})
+                $("#secondPage").css({'display':'block'})
+            })
+            $("#goback4").click(function(){
+                $("#four").css({'backgroundColor':'transparent','color':'white'})
+                $("#three").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'})
+                $("#forthPage").css({'display':'none'})
+                $("#thirdPage").css({'display':'block'})
+            })
+            $("#checkbox1").click(function(){
+                if($(this).is(':checked')){
+                   $("#border-around1").css({'background':'hsl(206deg 33% 94%)'})
+                   $("#amount-border-around1").css({'background':'hsl(206deg 33% 94%)'})
+                }
+                else{
+                    $("#border-around1").css({'background':''})
+                   $("#amount-border-around1").css({'background':''})
+                }
+            })
+            $("#checkbox2").click(function(){
+                if($(this).is(':checked')){
+                   $("#border-around2").css({'background':'hsl(206deg 33% 94%)'})
+                   $("#amount-border-around2").css({'background':'hsl(206deg 33% 94%)'})
+                }
+                else{
+                    $("#border-around2").css({'background':''})
+                   $("#amount-border-around2").css({'background':''})
+                }
+            })
+            $("#checkbox3").click(function(){
+                if($(this).is(':checked')){
+                   $("#border-around3").css({'background':'hsl(206deg 33% 94%)'})
+                   $("#amount-border-around3").css({'background':'hsl(206deg 33% 94%)'})
+                }
+                else{
+                    $("#border-around3").css({'background':''})
+                   $("#amount-border-around3").css({'background':''})
+                }
+            })
+            $("#change").click(function(){
+                $("#four").css({'backgroundColor':'transparent','color':'white'})
+                $("#one").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'})
+                $("#forthPage").css({'display':'none'});
+                $("#firstPage").css({'display':'block'});
+            })
+           $("#thankyou").click(function(){
+            $("#forthPage").css({'display' : 'none'});
+            $("#thankPage").css({'display':'block'});
+           })
+           $("#done").click(function(){
+            $("#four").css({'backgroundColor':'transparent','color':'white'});
+            $("#one").css({'backgroundColor':'lightblue','color':'black','fontWeight':'700'});
+            $("#thankPage").css({'display':'none'});
+            $("#firstPage").css({'display':'block'});
+           })
+        })
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid bg-container-fluid">
+            <div class="row justify-content-center pad-container">
+                <div class="col-md-2 bg-container container-radius-left">
+                    <div class="bg-side my-3">
+                        <div class="row mobile-view-row" style="padding-left: 70px; padding-top: 70px;" >
+                            <div class="col-2 pl-md-1 pl-sm-3 pl-1">
+                                <div class="number" id="one">1</div>
+                            </div>
+                            <div class="col-9 col-xl-9 col-md-8 mt-1 step1">
+                                <p class="step">STEP 1</p>
+                                <p class="info">YOUR INFO</p>
+                            </div>
+                        </div>
+                        <div class="row mobile-view-row " style="padding-left: 70px; padding-top: 20px;" >
+                            <div class="col-2 pl-md-1 pl-sm-3 pl-1">
+                                <div class="number1" id="two">2</div>
+                            </div>
+                            <div class="col-9 col-xl-9 col-md-8 mt-1 step2">
+                                <p class="step">STEP 2</p>
+                                <p class="info">SELECT PLAN</p>
+                            </div>
+                        </div>
+                        <div class="row mobile-view-row" style="padding-left: 70px; padding-top: 20px;" >
+                            <div class="col-2 pl-md-1 pl-sm-3 pl-1">
+                                <div class="number1" id="three">3</div>
+                            </div>
+                            <div class="col-9 col-xl-9 col-md-8 mt-1 step3">
+                                <p class="step">STEP 3</p>
+                                <p class="info">ADD-ONS</p>
+                            </div>
+                        </div>
+                        <div class="row mobile-view-row" style="padding-left: 70px; padding-top: 20px;" >
+                            <div class="col-2 pl-md-1 pl-sm-3 pl-1">
+                                <div class="number1" id="four">4</div>
+                            </div>
+                            <div class="col-9 col-xl-9 col-md-8 mt-1 step4">
+                                <p class="step">STEP 4</p>
+                                <p class="info">SUMMARY</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 bg-container container-radius-right ">
+                    <section id="firstPage">
+                        <div class="row mt-md-4">
+                            <div class="col-md-12 ml-lg-4">
+                                <h1 class="main-heading ml-xl-5 ml-lg-0 mt-lg-4 pt-lg-4 mt-md-4 pt-md-4  ">Personal info</h1>
+                                <p class="main-info ml-xl-5 ml-lg-0">Please provide your name, email address, and phone number.</p>
+                            </div>
+                        </div>
+                        <div class="row mt-md-4 p-xl-3 p-lg-3">
+                            <div class="col-md-8 pl-xl-4 ml-xl-5 ml-lg-0  ">
+                            <div class="form-group">
+                                    <label for="">Name</label>
+                                    <span id="nameWarning" class="float-right" style="color: red;"></span>
+                                    <input type="text" class="form-control" id="nameField" placeholder="e.g. Stephan King" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-xl-3 p-lg-3" style="margin-top: -10px;">
+                            <div class="col-md-8 pl-xl-4 ml-xl-5 ml-lg-0  ">
+                            <div class="form-group">
+                                    <label for="">Email Address</label>
+                                    <span id="emailWarning" class="float-right" style="color: red;"></span>
+                                    <input type="email" class="form-control" id="emailField" placeholder="e.g. stephanking@lorem.com" required>
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="row  p-xl-3 p-lg-3" style="    margin-top: -10px;" >
+                            <div class="col-md-8 pl-xl-4 ml-xl-5 ml-lg-0  ">
+                            <div class="form-group">
+                                    <label for="">Phone Number</label>
+                                    <span id="phoneWarning" class="float-right" style="color: red;"></span>
+                                    <input type="number" class="form-control" id="phoneField"  placeholder="e.g. +1 234 567 890" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-5 p-xl-3 p-lg-3" style="    margin-top: -10px;">
+                            <div class="col-md-8 pl-xl-4 ml-xl-5 ml-lg-0 mobile-view-button ">
+                                <button class="btn btn-primary float-right" type="button" id="gotosecond" >Next Page</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="secondPage" style="display: none;">
+                        <div class="row mt-md-4">
+                            <div class="col-md-12 ml-lg-4">
+                                <h1 class="main-heading ml-xl-5 ml-lg-0 mt-lg-4 pt-lg-4 mt-md-4 pt-md-4  ">Select your plan</h1>
+                                <p class="main-info ml-xl-5 ml-lg-0">You have the option of monthly or yearly billing.</p>
+                                <div class="alert alert-danger pl-xl-2 mr-xl-1 mr-lg-4 pt-1 pb-1 ml-xl-5" id="plan-warning" style="max-width: 346px; display: none;">
+                                    Please select your plan
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-md-4 ml-xl-0 ml-lg-2  ">
+                            <div class="col-xl-4 mt-3 card-area">
+                                <div class="card1" id="arcade">
+                                    <svg  xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fill-rule="evenodd"><circle cx="20" cy="20" r="20" fill="#FFAF7E"/><path fill="#FFF" fill-rule="nonzero" d="M24.995 18.005h-3.998v5.998h-2v-5.998H15a1 1 0 0 0-1 1V29a1 1 0 0 0 1 1h9.995a1 1 0 0 0 1-1v-9.995a1 1 0 0 0-1-1Zm-5.997 8.996h-2v-1.999h2v2Zm2-11.175a2.999 2.999 0 1 0-2 0v2.18h2v-2.18Z"/></g></svg>
+                                    <p class="card-name">Arcade</p>
+                                    <p class="card-amount">$9/mo</p>
+                                    <p class="year-amount">$90/yr</p>
+                                    <p class="year-plan mt-1">2 months free</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 mt-3">
+                                <div class="card1" id="advance">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fill-rule="evenodd"><circle cx="20" cy="20" r="20" fill="#F9818E"/><path fill="#FFF" fill-rule="nonzero" d="M25.057 15H14.944C12.212 15 10 17.03 10 19.885c0 2.857 2.212 4.936 4.944 4.936h10.113c2.733 0 4.943-2.08 4.943-4.936S27.79 15 25.057 15ZM17.5 20.388c0 .12-.108.237-.234.237h-1.552v1.569c0 .126-.138.217-.259.217H14.5c-.118 0-.213-.086-.213-.203v-1.583h-1.569c-.126 0-.217-.139-.217-.26v-.956c0-.117.086-.213.202-.213h1.584v-1.554c0-.125.082-.231.203-.231h.989c.12 0 .236.108.236.234v1.551h1.555c.125 0 .231.083.231.204v.988Zm5.347.393a.862.862 0 0 1-.869-.855c0-.472.39-.856.869-.856.481 0 .87.384.87.856 0 .471-.389.855-.87.855Zm1.9 1.866a.86.86 0 0 1-.87-.852.86.86 0 0 1 .87-.855c.48 0 .87.38.87.855a.86.86 0 0 1-.87.852Zm0-3.736a.862.862 0 0 1-.87-.854c0-.472.39-.856.87-.856s.87.384.87.856a.862.862 0 0 1-.87.854Zm1.899 1.87a.862.862 0 0 1-.868-.855c0-.472.389-.856.868-.856s.868.384.868.856a.862.862 0 0 1-.868.855Z"/></g></svg>
+                                    <p class="card-name">Advanced</p>
+                                    <p class="card-amount">$12/mo</p>
+                                    <p class="year-amount">$120/yr</p>
+                                    <p class="year-plan mt-1">2 months free</p>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 mt-3 ">
+                                <div class="card1" id="pro">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="none" fill-rule="evenodd"><circle cx="20" cy="20" r="20" fill="#483EFF"/><path fill="#FFF" fill-rule="nonzero" d="M26.666 13H13.334A3.333 3.333 0 0 0 10 16.333v7.193a3.447 3.447 0 0 0 2.14 3.24c1.238.5 2.656.182 3.56-.8L18.52 23h2.96l2.82 2.966a3.2 3.2 0 0 0 3.56.8 3.447 3.447 0 0 0 2.14-3.24v-7.193A3.333 3.333 0 0 0 26.666 13Zm-9.333 6H16v1.333a.667.667 0 0 1-1.333 0V19h-1.333a.667.667 0 0 1 0-1.334h1.333v-1.333a.667.667 0 1 1 1.333 0v1.333h1.333a.667.667 0 1 1 0 1.334Zm7.333 2a2.667 2.667 0 1 1 0-5.333 2.667 2.667 0 0 1 0 5.333ZM26 18.333a1.333 1.333 0 1 1-2.667 0 1.333 1.333 0 0 1 2.667 0Z"/></g></svg>
+                                    <p class="card-name">Pro</p>
+                                    <p class="card-amount">$15/mo</p>
+                                    <p class="year-amount">$150/yr</p>
+                                    <p class="year-plan mt-1">2 months free</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row  text-center mt-md-5 ml-xl-5 ml-lg-4 ml-md-3 ml-sm-5 m-2 m-md-0  ">
+                            <div class="col-md-9 mt-3 p-3 bg-plan">
+                                <span class="spacing month" id="month" >Monthly</span>
+                                <span class=" toggle-area" id="switchPlan">
+                                    <i class="fa fa-circle" id="toggle"></i>
+                                </span>
+                                <span class="spacing year" id="yearly">Yearly</span>
+                            </div>
+                        </div>
+                        <div class="row mt-5 pt-5 mb-3">
+                            <div class="col-md-9 ml-lg-5 pl-lg-4 mt-5 mobile-view-button-second">
+                               <span class="goback" id="goback">Go Back</span>
+                               <button class="btn btn-primary float-right mr-xl-4" type="button" id="gotothird">Next Page</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="thirdPage" style="display: none">
+                        <div class="row mt-md-4">
+                            <div class="col-md-12 ml-lg-4">
+                                <h1 class="main-heading ml-xl-5 ml-lg-0 mt-lg-4 pt-lg-4 mt-md-4 pt-md-4  ">Pick add-ons</h1>
+                                <p class="main-info ml-xl-5 ml-lg-0">Add-ons help enhance your gaming experience.</p>
+                                <div class="alert alert-danger pl-xl-2 mr-xl-1 mr-lg-4 pt-1 pb-1 ml-xl-5" id="checkbox-warning" style="max-width: 346px; display: none;">
+                                    Please select the add-on
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-lg-3 mt-md-2 pt-xl-3 pl-xl-3 pt-lg-3 pl-lg-3" style="    margin-top: -10px;" >
+                            <div class="col-11 ml-xl-5 pl-xl-4">
+                              <div class="row mt-md-0 mt-3">
+                                <div class="col-lg-8 col-md-9 col-9 ml-lg-3 ml-md-3 ml-3 border-around" id="border-around1" style="min-width: 200px;">
+                                    <span class="" >
+                                        <input type="checkbox" class="form-check-input checkbox" id="checkbox1">
+                                        <span class="ml-3">
+                                            <span class="services">Online Services</span>
+                                            <p class="games ml-3">Access to multiplayer games</p>
+                                        </span>
+                                </div>
+                                    <div class="col-lg-2 col-md-1  col-1 amount-border-around" id="amount-border-around1">
+                                        <span class="add-ons-amount" id="add-onsAmount1"></span>
+                                    </div>
+                                 </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row  pt-xl-3 pl-xl-3 pt-lg-3 pl-lg-3" style="    margin-top: -10px;" >
+                            <div class="col-11 ml-xl-5 pl-xl-4">
+                              <div class="row mt-md-3 mt-sm-4 mt-4">
+                                <div class="col-lg-8 col-md-9 col-9 ml-lg-3 ml-md-3 ml-3 border-around" style="min-width: 200px;"  id="border-around2">
+                                    <span class="" >
+                                        <input type="checkbox" class="form-check-input checkbox" id="checkbox2">
+                                        <span class="ml-3">
+                                            <span class="services">Larger storage</span>
+                                            <p class="games ml-3">Extra 1TB of cloud save</p>
+                                        </span>
+                                </div>
+                                    <div class="col-lg-2 col-md-1  col-1 amount-border-around" id="amount-border-around2">
+                                        <span class="add-ons-amount" id="add-onsAmount2"></span>
+                                    </div>
+                                 </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row  pt-xl-3 pl-xl-3 pt-lg-3 pl-lg-3" style="margin-top: -10px;" >
+                            <div class="col-11 ml-xl-5 pl-xl-4">
+                              <div class="row mt-md-3 mt-sm-4 mt-4">
+                                <div class="col-lg-8 col-md-9 col-9 ml-lg-3 ml-md-3 ml-3 border-around" style="min-width: 200px;" id="border-around3">
+                                    <span class="" >
+                                        <input type="checkbox" class="form-check-input checkbox" id="checkbox3">
+                                        <span class="ml-3">
+                                            <span class="services">Customizable Profile</span>
+                                            <p class="games ml-3">Custom theme on you profile</p>
+                                        </span>
+                                </div>
+                                    <div class="col-lg-2 col-md-1  col-1 amount-border-around" id="amount-border-around3">
+                                        <span class="add-ons-amount" id="add-onsAmount3"></span>
+                                    </div>
+                                 </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mt-5 pt-5 mb-3">
+                            <div class="col-md-9 ml-lg-5 pl-lg-4 mt-5 mobile-view-add-ons">
+                               <span class="goback ml-xl-3" id="goback3">Go Back</span>
+                               <button class="btn btn-primary float-right next-page-margin ml-xl-5" type="button" style="margin-top: -10px;" id="gotoforth">Next Page</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="forthPage" style="display: none;">
+                        <div class="row mt-md-4">
+                            <div class="col-md-12 ml-lg-4">
+                                <h1 class="main-heading ml-xl-5 ml-lg-0 mt-lg-4 pt-lg-4 mt-md-4 pt-md-4  ">Finishing up</h1>
+                                <p class="main-info ml-xl-5 ml-lg-0">Double-Check everything looks OK before confirming.</p>
+                                <div class="alert alert-danger pl-xl-2 mr-xl-1 mr-lg-4 pt-1 pb-1 ml-xl-5" id="plan-warning" style="max-width: 346px; display: none;">
+                                    Please select your plan
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-md-4 ml-xl-5 ml-lg-2  ">
+                            <div class="col-11 mobile-view-change">
+                                <div class="row mobile-view-summary">
+                                    <div class="col-8 ml-md-3 ml-3 p-3 bg-light" style="    border-radius: 8px 0 0 8px;">
+                                        <p class="displayPlan" id="displayPlan"></p>
+                                        <p class="change" id="change">Change</p>
+                                    </div>
+                                    <div class="col-3 p-3 bg-light" style="    border-radius: 0 8px 8px 0;">
+                                        <span  id="showPlanAmount"></span>
+                                    </div>
+                                    
+                                </div>
+                                <!-- <span>Hello</span><span>Hello</span> -->
+                            </div>
+                        </div>
+                        <div class="row mt-md-4 ml-xl-5 ml-lg-2  ">
+                            <div class="col-11">
+                                <div class="row mobile-view-summary" style="position: relative; top: -34px;border-radius: 0;">
+                                    <div class="col-11 ml-md-3 ml-3 p-3 bg-light mobile">
+                                       <div class="divider" style="background: lightgray;padding: 0.09px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ml-xl-5 ml-lg-2  ">
+                            <div class="col-11" style="position: relative;top: -40px;">
+                                <div class="row mobile-view-summary">
+                                    <div class="col-8 ml-md-3 ml-3 p-3 bg-light" style="    border-radius: 8px 0 0 8px;">
+                                        <p class="show-service" id="service1"></p>
+                                        <p class="show-game" id="service2"></p>
+                                        <p class="show-game" id="service3"></p>
+                                    </div>
+                                    <div class="col-3 p-3 bg-light" style="    border-radius: 0 8px 8px 0;">
+                                        <span  class="show-service-amount" id="serviceAmount1"></span>
+                                        <p class="game-amount" id="serviceAmount2"></p>
+                                        <p class="game-amount" id="serviceAmount3"></p>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row  ml-xl-5 ml-lg-2  ">
+                            <div class="col-9 ml-md-4 ml-3">
+                                    <span class="show-total" id="displayTotal"></span>
+                                    <span class="float-right grand-amount mr-lg-3" id="displayGrandAmount"></span>
+                            </div>
+                        </div>
+                        <div class="row mt-5 pt-5 mb-3">
+                            <div class="col-md-9 ml-lg-5 pl-lg-4 mt-5 mobile-view-button-finish">
+                               <span class="goback ml-xl-3" id="goback4">Go Back</span>
+                               <button class="btn btn-primary float-right next-page-margin ml-xl-5" type="button" style="margin-top: -10px;" id="thankyou">Confirm</button>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="thankPage" style="display: none;">
+                        <div class="container mobile-view-container ">
+                            <div class="row justify-content-center mobile-view-thank-row">
+                                <div class="col-10 align-thanks">
+                                    <div class="thank-section text-center">
+                                        <svg class="thanklogo" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><g fill="none"><circle cx="40" cy="40" r="40" fill="#F9818E"/><path fill="#E96170" d="M48.464 79.167c.768-.15 1.53-.321 2.288-.515a40.04 40.04 0 0 0 3.794-1.266 40.043 40.043 0 0 0 3.657-1.63 40.046 40.046 0 0 0 12.463-9.898A40.063 40.063 0 0 0 78.3 51.89c.338-1.117.627-2.249.867-3.391L55.374 24.698a21.6 21.6 0 0 0-15.332-6.365 21.629 21.629 0 0 0-15.344 6.365c-8.486 8.489-8.486 22.205 0 30.694l23.766 23.775Z"/><path fill="#FFF" d="M40.003 18.333a21.58 21.58 0 0 1 15.31 6.351c8.471 8.471 8.471 22.158 0 30.63-8.47 8.47-22.156 8.47-30.627 0-8.47-8.472-8.47-22.159 0-30.63a21.594 21.594 0 0 1 15.317-6.35Zm9.865 15c-.316.028-.622.15-.872.344l-12.168 9.13-5.641-5.642c-1.224-1.275-3.63 1.132-2.356 2.356l6.663 6.663c.56.56 1.539.63 2.173.156l13.326-9.995c1.122-.816.43-2.993-.956-3.013a1.666 1.666 0 0 0-.17 0Z"/></g></svg>
+                                        <div class="thank-caption">Thank you!</div>
+                                        <div class="description">
+                                            <span class="thank-description">
+                                                Thanks for confirming your subscription! We hope you have
+                                            </span>
+                                            <span class="thank-description">
+                                                fun using our platform. If you ever need support, please feel
+                                            </span> 
+                                            <p class="thank-description">
+                                                free to email us at support@loremgaming.com.
+                                            </p> 
+                                            <button type="button" class="btn btn-primary-thank mt-3" id="done">Done</button> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+</body>
+</html>

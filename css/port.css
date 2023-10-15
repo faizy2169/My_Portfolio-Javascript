@@ -1,0 +1,88 @@
+.circle-container {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 768px;
+    height: 768px;
+    border-radius: 50%;
+    background-color: transparent;
+    position: relative;
+  }
+  .circle-container h1 {
+    position: absolute;
+    transform: rotate(calc(360deg / 4 * var(--index)));
+    left: 0;
+    transform-origin: 384px;
+  }
+  .circle{
+    position: absolute;
+    height: 650px;
+    width: 650px;
+    background: transparent;
+    border: 5px solid blue;
+    border-radius: 50%;
+  }
+  h1{
+    background-color: white;
+    z-index: 1;
+  }
+  .shape{
+    position: absolute;
+    /* width: 768px; */
+    /* height: 768px; */
+    top: 0;
+    left: 0;
+    border-left: 376px solid transparent;
+    /* background: red; */
+    border-top: 400px solid #ff6464;
+    border-bottom: 400px solid #FF6461;
+    border-right: 400px solid #ff6464;
+    z-index: 2;
+  }
+  .img{
+    z-index: 3;
+    position: absolute;
+    top: 16%;
+    right: -182px;
+    height: 599px;
+    object-fit: cover;
+  }
+  .container {
+    position: relative;
+    width: 300px; /* set the width of the container as per your requirement */
+    height: 300px; /* set the height of the container as per your requirement */
+  }
+  
+  .triangle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid #000000; /* change the color as per your need */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .img1 {
+    display: block;
+    position: relative;
+    z-index: 1; /* set the z-index value greater than the triangle element to place the image on top */
+  }
+  .circle-bg{
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background: blue;
+  }
+  .my-img{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  

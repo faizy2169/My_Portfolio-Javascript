@@ -1,0 +1,87 @@
+body{
+    font-family: 'Roboto', sans-serif !important;
+    background-color: hsl(210, 36%, 96%) !important;
+}
+.menu{
+    font-size: 2.7rem !important;
+    text-transform: capitalize;
+    font-weight: 700;
+    color: hsl(209, 61%, 16%) !important;
+    letter-spacing: 3px;
+}
+.menu-border{
+    margin-top: 0rem !important;
+    margin-bottom: 1rem !important;
+    border: 0 !important;
+    border-top: 5px solid #c59d5f !important;
+    width: 80px !important;
+}
+.btn-search{
+    color: #c59d5f !important;
+    padding-top: 3px !important;
+    margin: 5px !important;
+    padding-bottom: 3px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    background: transparent !important;
+    border: 2px solid !important;
+    border-top-color: #c59d5f !important;
+    border-left-color: #c59d5f !important;
+    text-shadow: 0 0 #c59d5f !important;
+    border-radius: 9px !important;
+    border-right-color: black !important;
+    border-bottom-color: black !important;
+    letter-spacing: 1px !important;
+    transition: background-color .3s linear;
+}
+.btn-search:hover{
+    background-color: #c59d5f !important;
+    color: white !important;
+}
+.btn-search:focus{
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+.img-thumbnail{
+    padding: 0.25rem !important;
+    background-color: #c59d5f !important;
+    border: 1px solid #c59d5f !important;
+    border-radius: 0.5rem !important;
+    height: 150px !important;
+    border-radius: 11px;
+    width: 100%;
+    border: 2px solid #c59d5f !important;
+    object-fit: cover;
+}
+.title{
+    font-size: 1.01rem;
+    letter-spacing: 4px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+.amount{
+    color: #c59d5f;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+.title-border{
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1px dotted hsl(210, 22%, 49%);
+}
+.description{
+    font-size: 1.09rem;
+    color:hsl(210, 22%, 49%);
+}
+@media (min-width: 576px) and (max-width: 767px){
+    .img-thumbnail{
+       height: 175px !important;
+    }
+}
+@media (max-width: 575px){
+    .img-thumbnail{
+        height: 240px !important;
+    }
+}
